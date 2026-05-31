@@ -146,7 +146,6 @@
 	  background: linear-gradient(45deg, var(--vk-color), var(--secondary-color));
       color: #fffff;
     }
-	
   </style>
 </head>
 <body>
@@ -161,14 +160,15 @@
     </div>
 
     <div class="controls">
-      <button class="btn btn-twitch active-twitch" data-player="twitch">Twitch</button>
-      <button class="btn btn-vk active-vk" data-player="vk">VK Video Live</button>
-      <button class="btn btn-youtube active-youtube" data-player="youtube">YouTube</button>
-      <a href="https://twitch.tv/popout/quadplayru/chat?popout" target="blank" class="btn btn-secondary">Чат</a>
+      <button class="btn btn-twitch active-twitch" data-player="twitch" title="Основной стрим в Twitch">Twitch</button>
+      <button class="btn btn-vk active-vk" data-player="vk" title="Резервный стрим в VK Video Live">VK Video Live</button>
+      <button class="btn btn-youtube active-youtube" data-player="youtube" title="Резервный стрим в YouTube (баз чата и розыгрышей)">YouTube</button>
+      <a href="https://twitch.tv/popout/quadplayru/chat?popout" title="Чат стрима в новом окне" target="blank" class="btn btn-secondary">Чат</a>
       <br>
       
+      <a href="https://twitch.tv/quadplayru/schedule" title="Расписание стримов в новом окне" target="blank"><div id="countdown" class="btn btn-timer">00:00:00</div></a>
       
-      
+	  
     </div>
   </div>
 
@@ -195,17 +195,30 @@
 
 </body>
 
+
+
 <script>
 function getNext19() {
   const now = new Date();
-  const target = new Date();
+  
+  
+  const utcOffset = 3; 
+  const nowUtc = now.getTime() + (now.getTimezoneOffset() * 60000);
+  const nowInGMT3 = new Date(nowUtc + (utcOffset * 3600000));
+  
+  const target = new Date(nowInGMT3);
   target.setHours(19, 0, 0, 0);
 
-  if (now >= target) {
+  
+  if (nowInGMT3 >= target) {
     target.setDate(target.getDate() + 1);
   }
 
-  return target;
+  
+  const targetUtc = target.getTime() - (utcOffset * 3600000);
+  const targetLocal = new Date(targetUtc - (now.getTimezoneOffset() * 60000));
+
+  return targetLocal;
 }
 
 function updateCountdown() {
@@ -224,6 +237,8 @@ function updateCountdown() {
 updateCountdown();
 setInterval(updateCountdown, 1000);
 </script>
+
+
 			
         </div>
     </div>
