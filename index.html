@@ -191,14 +191,25 @@
 <script>
 function getNext19() {
   const now = new Date();
-  const target = new Date();
+  
+  
+  const utcOffset = 3; 
+  const nowUtc = now.getTime() + (now.getTimezoneOffset() * 60000);
+  const nowInGMT3 = new Date(nowUtc + (utcOffset * 3600000));
+  
+  const target = new Date(nowInGMT3);
   target.setHours(19, 0, 0, 0);
 
-  if (now >= target) {
+  
+  if (nowInGMT3 >= target) {
     target.setDate(target.getDate() + 1);
   }
 
-  return target;
+  
+  const targetUtc = target.getTime() - (utcOffset * 3600000);
+  const targetLocal = new Date(targetUtc - (now.getTimezoneOffset() * 60000));
+
+  return targetLocal;
 }
 
 function updateCountdown() {
