@@ -5,12 +5,14 @@
     <link>https://quadplay.ru/</link>
     <description>Recent content in Home on Quadplay.ru | Адаптивный гейминг</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-US</language><atom:link href="https://quadplay.ru/index.xml" rel="self" type="application/rss+xml" />
+    <language>en-US</language>
+    <managingEditor>Avenom</managingEditor>
+    <webMaster>Avenom</webMaster><atom:link href="https://quadplay.ru/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>QuadStick</title>
       <link>https://quadplay.ru/quadstick/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
+      <author>Avenom</author>
       <guid>https://quadplay.ru/quadstick/</guid>
       <description>&lt;h1 id=&#34;quadstick&#34;&gt;QuadStick&lt;/h1&gt;
 &lt;p&gt;QuadStick — это адаптивный игровой контроллер для людей с ограниченными физическими возможностями здоровья. Он позволяет управлять курсором мыши и игровыми консолями с помощью зажатого губами мундштука с аналоговым джойстиком и дыханием в три отверстия, а также дополнительной кнопкой, нажимаемой губой или подбородком.&lt;/p&gt;
@@ -61,7 +63,7 @@
       <title>Telegram</title>
       <link>https://quadplay.ru/tg/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
+      <author>Avenom</author>
       <guid>https://quadplay.ru/tg/</guid>
       <description>&lt;h1 id=&#34;telegram&#34;&gt;Telegram&lt;/h1&gt;
 &lt;p&gt;Следите за новостями и анонсами стримов в &lt;strong&gt;&lt;a href=&#34;https://t.me/quadplay&#34;&gt;телеграм-канале&lt;/a&gt;&lt;/strong&gt;.&lt;/p&gt;
@@ -82,7 +84,7 @@
       <title>Донат</title>
       <link>https://quadplay.ru/da/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
+      <author>Avenom</author>
       <guid>https://quadplay.ru/da/</guid>
       <description>&lt;h1 id=&#34;донат&#34;&gt;Донат&lt;/h1&gt;
 &lt;p&gt;Поддержка канала донатом осуществляется в качестве подарка лично стримеру и не является пожертвованием в какую-либо коммерческую или некоммерческую организацию.&lt;/p&gt;
@@ -107,7 +109,7 @@
       <title>Игры</title>
       <link>https://quadplay.ru/games/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
+      <author>Avenom</author>
       <guid>https://quadplay.ru/games/</guid>
       <description>&lt;h1 id=&#34;игры&#34;&gt;Игры&lt;/h1&gt;
 &lt;p&gt;На стримах в основном прохождение однопользовательских игр, но есть и несколько регулярных сессионок.&lt;/p&gt;
@@ -141,7 +143,7 @@
       <title>Канал</title>
       <link>https://quadplay.ru/about/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
+      <author>Avenom</author>
       <guid>https://quadplay.ru/about/</guid>
       <description>&lt;h1 id=&#34;о-канале&#34;&gt;О канале&lt;/h1&gt;
 &lt;p&gt;Меня зовут Дан&lt;strong&gt;и&lt;/strong&gt;с (ник Avenom), и я веду стримы с помощью адаптивного игрового контроллера &lt;strong&gt;&lt;a href=&#34;https://avenom.ru/posts/quadstick&#34;&gt;QuadStick&lt;/a&gt;&lt;/strong&gt; - это джойстик, управляемый ртом и дыханием.&lt;/p&gt;
@@ -153,7 +155,7 @@
       <title>Конфигурация оборудования</title>
       <link>https://quadplay.ru/pc/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
+      <author>Avenom</author>
       <guid>https://quadplay.ru/pc/</guid>
       <description>&lt;h1 id=&#34;конфигурация-оборудования&#34;&gt;Конфигурация оборудования&lt;/h1&gt;
 &lt;p&gt;У стримера ограниченные физические возможности, поэтому все оборудование подбиралось с учетом возможности комфортного управления с компьютера с помощью мышки и голоса.&lt;/p&gt;
@@ -238,7 +240,7 @@
       <title>Подписка</title>
       <link>https://quadplay.ru/sub/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
+      <author>Avenom</author>
       <guid>https://quadplay.ru/sub/</guid>
       <description>&lt;h1 id=&#34;подписка&#34;&gt;Подписка&lt;/h1&gt;
 &lt;p&gt;Поддержка канала подпиской на &lt;strong&gt;&lt;a href=&#34;https://boosty.to/quadplay&#34;&gt;Boosty&lt;/a&gt;&lt;/strong&gt; осуществляется в качестве подарка лично стримеру и не является пожертвованием в какую-либо коммерческую или некоммерческую организацию.&lt;/p&gt;
