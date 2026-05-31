@@ -202,7 +202,7 @@
     const sources = {
       twitch: 'https://player.twitch.tv/?channel=quadplayru&parent=quadplay.ru&muted=true',
       vk: 'https://live.vkvideo.ru/app/embed/quadplay?autoplay=true',
-      youtube: 'https://www.youtube.com/embed/live_stream?channel=UCLvQKvtL-LErJMVjzrGvH-w&autoplay=0&mute=0'
+      youtube: 'https://www.youtube.com/embed/live_stream?channel=UCLvQKvtL-LErJMVjzrGvH-w&autoplay=1&mute=0'
     };
 
     const youtubeChannelId = 'UCLvQKvtL-LErJMVjzrGvH-w';
@@ -214,52 +214,26 @@
         return youtubeLiveCached;
       }
       try {
-        
-        const [res1, res2] = await Promise.all([
-          fetch(`https://decapi.me/youtube/latest_video?id=${youtubeChannelId}`),
-          fetch(`https://decapi.me/youtube/latest_video?id=${youtubeChannelId}&no_livestream=1`)
-        ]);
-        
-        if (res1.ok && res2.ok) {
-          const text1 = await res1.text();
-          const text2 = await res2.text();
-          
-          if (text1 && text2) {
-            const isLive = text1.trim() !== text2.trim();
-            youtubeLiveCached = isLive;
-            
-            setTimeout(() => { youtubeLiveCached = null; }, 3 * 60 * 1000);
-            return isLive;
-          }
-        }
-      } catch (e) {
-        console.warn("DecAPI check failed, falling back to proxy check", e);
-      }
-
-      
-      try {
         const url = `https://www.youtube.com/channel/${youtubeChannelId}/live`;
         const response = await fetch(`https://api.allorigins.win/get?url=${encodeURIComponent(url)}`);
-        if (response.ok) {
-          const data = await response.json();
-          const html = data.contents;
-          
-          const isLive = html.includes('"isLive":true') || 
-                         html.includes('hqdefault_live.jpg') || 
-                         html.includes('{"text":" watching"}') || 
-                         html.includes('{"text":" watching now"}') ||
-                         html.includes('watching-info') ||
-                         html.includes('live-status-indicator');
-          
-          youtubeLiveCached = isLive;
-          setTimeout(() => { youtubeLiveCached = null; }, 3 * 60 * 1000);
-          return isLive;
-        }
+        if (!response.ok) return false;
+        const data = await response.json();
+        const html = data.contents;
+        
+        const isLive = html.includes('"isLive":true') || 
+                       html.includes('hqdefault_live.jpg') || 
+                       html.includes('{"text":" watching"}') || 
+                       html.includes('{"text":" watching now"}') ||
+                       html.includes('watching-info') ||
+                       html.includes('live-status-indicator');
+        
+        youtubeLiveCached = isLive;
+        setTimeout(() => { youtubeLiveCached = null; }, 5 * 60 * 1000);
+        return isLive;
       } catch (e) {
-        console.error("Fallback YouTube check failed:", e);
+        console.error("Error checking YouTube live status:", e);
+        return false;
       }
-      
-      return false;
     }
 
     async function switchPlayer(playerType) {
