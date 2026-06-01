@@ -152,19 +152,19 @@
       transition: .2s;
     }
 
-    .controls button.active.btn-twitch {
+    .controls button.active-twitch {
       background: linear-gradient(45deg, var(--twitch-color), var(--secondary-color));
       color: #fff;
     }
 	
-    .controls button.active.btn-youtube {
+    .controls button.active-youtube {
       background: linear-gradient(45deg, var(--youtube-color), var(--secondary-color));
       color: #fff;
     }
 
-    .controls button.active.btn-vk {
-      background: linear-gradient(45deg, var(--vk-color), var(--secondary-color));
-      color: #fff;
+    .controls button.active-vk {
+	  background: linear-gradient(45deg, var(--vk-color), var(--secondary-color));
+      color: #fffff;
     }
   </style>
 
@@ -182,9 +182,10 @@
     </div>
 
     <div class="controls">
-      <button class="btn btn-twitch active" data-player="twitch" title="Основной стрим в Twitch">Twitch</button>
-      <button class="btn btn-vk" data-player="vk" title="Резервный стрим в VK Video Live">VK Video Live</button>
-      <button class="btn btn-youtube" data-player="youtube" title="Резервный стрим в YouTube (без чата и розыгрышей)">YouTube</button>
+      <button class="btn btn-twitch active-twitch" data-player="twitch" title="Основной стрим в Twitch">Twitch</button>
+      <button class="btn btn-vk active-vk" data-player="vk" title="Резервный стрим в VK Video Live">VK Video Live</button>
+      <button class="btn btn-youtube active-youtube" data-player="youtube" title="Резервный стрим в YouTube (без чата и розыгрышей)">YouTube</button>
+      <a href="https://youtube.com/@quadplay"><button class="btn btn-youtube active-youtube" data-player="youtube" title="Смотреть на сайте YouTube" target="blank">🔗</button></a>
       <a href="https://twitch.tv/popout/quadplayru/chat?popout" title="Чат стрима в новом окне" target="blank" class="btn btn-secondary">Чат</a>
       <br>
       
