@@ -50,6 +50,10 @@
 
 
 <script src="/js/main.min.1dc48d277f58c447b08394eeabd1a9c2ee6bacc162b90044cc98b07898af3d86.js" integrity="sha256-HcSNJ39YxEewg5Tuq9Gpwu5rrMFiuQBEzJiweJivPYY=" defer></script>
+
+
+
+<script src="/js/timer.min.f7e8e854bcb3010f7a53ccef0df00ef09ed3fc9a8493e57602d94a5ee28e667b.js" integrity="sha256-9&#43;joVLyzAQ96U8zvDfAO8J7T/JqEk&#43;V2AtlKXuKOZns=" defer></script>
     
     
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-2310RJEC91"></script>
@@ -192,10 +196,9 @@
       <button class="btn btn-vk active-vk" data-player="vk" title="Резервный стрим в VK Video Live">VK Video Live</button>
       <button class="btn btn-youtube active-youtube" data-player="youtube" title="Резервный стрим в YouTube (без чата и розыгрышей)">YouTube</button>
       <a href="https://twitch.tv/popout/quadplayru/chat?popout" title="Чат стрима в новом окне" target="blank" class="btn btn-secondary">Чат</a>
-      
-      
-      
-      
+	  
+	  <a href="https://twitch.tv/quadplayru/schedule" title="Расписание стримов в новом окне" target="blank"><div id="countdown" class="btn btn-timer">00:00:00</div></a>
+      	  
 	  
     </div>
   </div>
@@ -304,53 +307,7 @@
         switchPlayer(btn.dataset.player);
       });
     });
-  </script>
-
-
-
-<script>
-function getNext19() {
-  const now = new Date();
-  
-  
-  const utcOffset = 3; 
-  const nowUtc = now.getTime() + (now.getTimezoneOffset() * 60000);
-  const nowInGMT3 = new Date(nowUtc + (utcOffset * 3600000));
-  
-  const target = new Date(nowInGMT3);
-  target.setHours(19, 0, 0, 0);
-
-  
-  if (nowInGMT3 >= target) {
-    target.setDate(target.getDate() + 1);
-  }
-
-  
-  const targetUtc = target.getTime() - (utcOffset * 3600000);
-  const targetLocal = new Date(targetUtc - (now.getTimezoneOffset() * 60000));
-
-  return targetLocal;
-}
-
-function updateCountdown() {
-  const now = new Date();
-  const target = getNext19();
-  const diff = target - now;
-
-  const hours = Math.floor(diff / (1000 * 60 * 60));
-  const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-  const seconds = Math.floor((diff % (1000 * 60)) / 1000);
-
-  document.getElementById("countdown").textContent =
-    `${String(hours).padStart(2, "0")}:${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}`;
-}
-
-updateCountdown();
-setInterval(updateCountdown, 1000);
-</script>
-
-
-			
+  </script>		
         </div>
     </div>
 	
