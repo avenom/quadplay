@@ -45,7 +45,7 @@
 </script>
     
 
-<link rel="stylesheet" href="/scss/main.min.c2c9887c78103bebe019d8fcc0cee3353700c8ebc172f045002dca86878912da.css" integrity="sha256-wsmIfHgQO&#43;vgGdj8wM7jNTcAyOvBcvBFAC3KhoeJEto=">
+<link rel="stylesheet" href="/scss/main.min.ee849150da3bbd06d1ce75abba40739fff7cd2358954bb9520497387448327ac.css" integrity="sha256-7oSRUNo7vQbRznWrukBzn/980jWJVLuVIElzh0SDJ6w=">
 
 
 
@@ -150,7 +150,7 @@
       flex-wrap: wrap;
       justify-content: center;
     }
-
+	
     .controls button {
       border: 0;
       padding: 12px 18px;
@@ -176,7 +176,27 @@
 	  background: linear-gradient(45deg, var(--vk-color), var(--secondary-color));
       color: #fffff;
     }
+
+    .controls button.active-chat {
+      background: transparent;
+      color: var(--primary-color);
+      border: 2px solid var(--primary-color);
+ 
+    }
+    .controls button.active-timer {
+      background: transparent;
+      color: var(--text-primary);
+      border: 2px solid var(--text-primary);
+    }
   </style>
+
+
+    <div class="controls">
+	
+      <a href="https://vkvideo.ru/playlist/-231529981_2" title="Плейлист 007 First Light" target="blank" class="logo-game">007 FIRST LIGHT •</a>
+	  <a href="https://twitch.tv/quadplayru/schedule" title="Расписание стримов на неделю" target="blank"><div id="countdown" class="logo-game">00:00:00</div></a>
+	
+  </div>
 
   <div class="player-wrap">
     <div class="player">
@@ -192,13 +212,18 @@
     </div>
 
     <div class="controls">
+	
+      
+	  
       <button class="btn btn-twitch active-twitch" data-player="twitch" title="Основной стрим в Twitch">Twitch</button>
       <button class="btn btn-vk active-vk" data-player="vk" title="Резервный стрим в VK Video Live">VK Video Live</button>
       <button class="btn btn-youtube active-youtube" data-player="youtube" title="Резервный стрим в YouTube (без чата и розыгрышей)">YouTube</button>
-      <a href="https://twitch.tv/popout/quadplayru/chat?popout" title="Чат стрима в новом окне" target="blank" class="btn btn-secondary">Чат</a>
 	  
-	  <a href="https://twitch.tv/quadplayru/schedule" title="Расписание стримов в новом окне" target="blank"><div id="countdown" class="btn btn-timer">00:00:00</div></a>
-      	  
+	  
+	  	  
+      <a href="https://twitch.tv/popout/quadplayru/chat?popout" title="Чат стрима" target="blank" class="btn btn-secondary">Чат</a>
+	  
+	  
 	  
     </div>
   </div>
