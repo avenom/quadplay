@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Две страницы</title>
+    <title>TURZX</title>
     <style>
         * {
             margin: 0;
@@ -16,16 +16,19 @@
             overflow: hidden;
         }
         iframe {
-            flex: 1;
             border: none;
         }
         iframe:first-child {
+            flex: 2;
             border-right: 2px solid #ccc;
+        }
+        iframe:last-child {
+            flex: 1;
         }
     </style>
 </head>
 <body>
-    <iframe src="http://192.168.1.89:4848/Chat/Default/" title="Левая страница"></iframe>
-    <iframe src="https://quadplay.ru/twitch" title="Правая страница"></iframe>
+    <iframe src="http://192.168.1.89:4848/Chat/Default/" title="MiniChat"></iframe>
+    <iframe src="https://quadplay.ru/twitch" title="Twitch"></iframe>
 </body>
 </html>
