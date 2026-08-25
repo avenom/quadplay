@@ -66,18 +66,26 @@
       <author>Avenom</author>
       <guid>https://quadplay.ru/tg/</guid>
       <description>&lt;h1 id=&#34;telegram&#34;&gt;Telegram&lt;/h1&gt;
-&lt;p&gt;Следите за новостями и анонсами стримов в &lt;strong&gt;&lt;a href=&#34;https://t.me/quadplay&#34;&gt;телеграм-канале&lt;/a&gt;&lt;/strong&gt; или в сообществе &lt;strong&gt;&lt;a href=&#34;https://vk.ru/quadplay&#34;&gt;ВК&lt;/a&gt;&lt;/strong&gt;.&lt;/p&gt;
-&lt;h2 id=&#34;последние-посты&#34;&gt;Последние посты&lt;/h2&gt;
+&lt;p&gt;Следите за новостями и анонсами стримов в &lt;strong&gt;&lt;a href=&#34;https://t.me/quadplay&#34;&gt;телеграм-канале&lt;/a&gt;&lt;/strong&gt; или в сообществе &lt;strong&gt;&lt;a href=&#34;https://vk.ru/quadplay&#34;&gt;ВК&lt;/a&gt;&lt;/strong&gt;.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Архив</title>
+      <link>https://quadplay.ru/archive/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <author>Avenom</author>
+      <guid>https://quadplay.ru/archive/</guid>
+      <description>&lt;h1 id=&#34;архив&#34;&gt;Архив&lt;/h1&gt;
+&lt;p&gt;Архив записей прошедших стримов канала.&lt;/p&gt;
+&lt;h2 id=&#34;пройденные-игры&#34;&gt;Пройденные игры&lt;/h2&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;&lt;a href=&#34;https://t.me/quadplay/100&#34;&gt;Впечатления от прохождения 007 First Light&lt;/a&gt;&lt;/strong&gt;&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;&lt;a href=&#34;https://t.me/quadplay/81&#34;&gt;Стрим XBOX Games Showcase 2026&lt;/a&gt;&lt;/strong&gt;&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;&lt;a href=&#34;https://t.me/quadplay/69&#34;&gt;Как прошел первый стрим и розыгрыш стим-гифта 007 First Light&lt;/a&gt;&lt;/strong&gt;&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;&lt;a href=&#34;https://t.me/quadplay/63&#34;&gt;Аудиоинтерфейс для стриминга Elgato Wave XLR MK.2&lt;/a&gt;&lt;/strong&gt;&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;&lt;a href=&#34;https://t.me/quadplay/60&#34;&gt;Как прошел тестовый стрим Forza Horizon 6&lt;/a&gt;&lt;/strong&gt;&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;&lt;a href=&#34;https://t.me/quadplay/53&#34;&gt;QuadStick — контроллер с неограниченными возможностями&lt;/a&gt;&lt;/strong&gt;&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;&lt;a href=&#34;https://t.me/quadplay/51&#34;&gt;Демонстрация геймплея Forza Horizon 5 с QuadStick&lt;/a&gt;&lt;/strong&gt;&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;&lt;a href=&#34;https://t.me/quadplay/50&#34;&gt;Как я заказывал QuadStick в Россию&lt;/a&gt;&lt;/strong&gt;&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;&lt;a href=&#34;https://t.me/quadplay/49&#34;&gt;Quadplay.ru — канал адаптивного гейминга&lt;/a&gt;&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;a href=&#34;https://docs.google.com/spreadsheets/d/1Xr40jOKbo7o1qZA0S2m6smAHGHTpVRYG-T-V-U4zgoY&#34;&gt;Таблица пройденных игр с QuadStick&lt;/a&gt;&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;архив-стримов&#34;&gt;Архив стримов&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Pragmata&lt;/strong&gt; • &lt;a href=&#34;https://vkvideo.ru/playlist/-231529981_4&#34;&gt;VK&lt;/a&gt; • &lt;a href=&#34;https://youtube.com/playlist?list=PLBMgHJSMgS0E&#34;&gt;YT&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;007 First Light&lt;/strong&gt; • &lt;a href=&#34;https://vkvideo.ru/playlist/-231529981_2&#34;&gt;VK&lt;/a&gt; • &lt;a href=&#34;https://youtube.com/playlist?list=PLc34xoGN6hP001A_6OD0qtBADgbcW3yV3&#34;&gt;YT&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Forza Horizon 6&lt;/strong&gt; • &lt;a href=&#34;https://vkvideo.ru/playlist/-231529981_1&#34;&gt;VK&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;</description>
     </item>
     
@@ -103,21 +111,6 @@
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;TON:&lt;/strong&gt; UQCqpEB2wNgzskgGt6JIpbciQ-RDi_yTJtL4DNihqHUywJfb&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;USDT (TRON TRC-20):&lt;/strong&gt; TLKrTcoTPiVs1t28Fu7FnFHjvjpk8ei1Ro&lt;/li&gt;
-&lt;/ul&gt;</description>
-    </item>
-    
-    <item>
-      <title>Игры</title>
-      <link>https://quadplay.ru/games/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <author>Avenom</author>
-      <guid>https://quadplay.ru/games/</guid>
-      <description>&lt;h1 id=&#34;игры&#34;&gt;Игры&lt;/h1&gt;
-&lt;p&gt;На стримах в основном прохождение однопользовательских игр.&lt;/p&gt;
-&lt;h2 id=&#34;список-игр&#34;&gt;Список игр&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;&lt;a href=&#34;https://docs.google.com/spreadsheets/d/1Xr40jOKbo7o1qZA0S2m6smAHGHTpVRYG-T-V-U4zgoY&#34;&gt;Таблица пройденных игр с QuadStick&lt;/a&gt;&lt;/strong&gt;&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;&lt;a href=&#34;https://vkvideo.ru/@quadplay/playlists&#34;&gt;Плейлисты пройденных игр с QuadStick&lt;/a&gt;&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;</description>
     </item>
     
