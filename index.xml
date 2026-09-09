@@ -97,12 +97,12 @@
       <author>Avenom</author>
       <guid>https://quadplay.ru/da/</guid>
       <description>&lt;h1 id=&#34;донат&#34;&gt;Донат&lt;/h1&gt;
-&lt;p&gt;Поддержка канала донатом осуществляется в качестве подарка лично стримеру и не является пожертвованием в какую-либо коммерческую или некоммерческую организацию.&lt;/p&gt;
+&lt;p&gt;Поддержка канала донатом или подпиской осуществляется в качестве подарка лично стримеру и не является пожертвованием в какую-либо коммерческую или некоммерческую организацию.&lt;/p&gt;
 &lt;h2 id=&#34;донат-1&#34;&gt;Донат&lt;/h2&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;&lt;a href=&#34;https://www.donationalerts.com/r/quadplay&#34;&gt;DonationAlerts&lt;/a&gt;&lt;/strong&gt; (СБП/МИР/VISA)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;a href=&#34;https://donationalerts.com/r/quadplay&#34;&gt;DonationAlerts&lt;/a&gt;&lt;/strong&gt; (СБП/МИР/VISA)&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;&lt;a href=&#34;https://yoomoney.ru/fundraise/194DE277NV3.250321&#34;&gt;ЮMoney&lt;/a&gt;&lt;/strong&gt; (SberPay/МИР/VISA)&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;&lt;a href=&#34;https://pay.cloudtips.ru/p/6a3a7aa3&#34;&gt;CloudTips&lt;/a&gt;&lt;/strong&gt; (T-Pay/СБП/VISA)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;a href=&#34;https://pay.cloudtips.ru/p/c3daec67&#34;&gt;CloudTips&lt;/a&gt;&lt;/strong&gt; (T-Pay/СБП/VISA)&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id=&#34;карта&#34;&gt;Карта&lt;/h2&gt;
 &lt;ul&gt;
@@ -112,6 +112,10 @@
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;TON:&lt;/strong&gt; UQCqpEB2wNgzskgGt6JIpbciQ-RDi_yTJtL4DNihqHUywJfb&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;USDT (TRON TRC-20):&lt;/strong&gt; TLKrTcoTPiVs1t28Fu7FnFHjvjpk8ei1Ro&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;подписка&#34;&gt;Подписка&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;&lt;a href=&#34;https://boosty.to/quadplay&#34;&gt;Boosty&lt;/a&gt;&lt;/strong&gt; (СБП/МИР/VISA)&lt;/li&gt;
 &lt;/ul&gt;</description>
     </item>
     
@@ -205,26 +209,6 @@
 &lt;li&gt;&lt;strong&gt;Bandicut&lt;/strong&gt; — нарезчик видео.&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;Obsidian&lt;/strong&gt; — продвинутый заметочник.&lt;/li&gt;
 &lt;/ul&gt;</description>
-    </item>
-    
-    <item>
-      <title>Подписка</title>
-      <link>https://quadplay.ru/sub/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <author>Avenom</author>
-      <guid>https://quadplay.ru/sub/</guid>
-      <description>&lt;h1 id=&#34;подписка&#34;&gt;Подписка&lt;/h1&gt;
-&lt;p&gt;Поддержка канала подпиской на &lt;strong&gt;&lt;a href=&#34;https://boosty.to/quadplay&#34;&gt;Boosty&lt;/a&gt;&lt;/strong&gt; осуществляется в качестве подарка лично стримеру и не является пожертвованием в какую-либо коммерческую или некоммерческую организацию.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Оформлять подписку на самом твич-канале не нужно, монетизация в РФ не работает.&lt;/strong&gt;&lt;/p&gt;
-&lt;h2 id=&#34;уровни-подписки&#34;&gt;Уровни подписки&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;&lt;a href=&#34;https://boosty.to/quadplay/purchase/3520502&#34;&gt;1. Гуль — 100₽&lt;/a&gt;&lt;/strong&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Выживать в радиоактивной пустоши тяжело, но вы не утратили остатки человечности и отсыпали уставшему путнику немного бутылочных крышек.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;&lt;a href=&#34;https://boosty.to/quadplay/purchase/3520512&#34;&gt;2. Ведьмак — 300₽&lt;/a&gt;&lt;/strong&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Вы выполнили сложный заказ. Заказчик выдал вам увесистый мешочек чеканных монет и вы решили поделиться наградой с напарником.&lt;/p&gt;</description>
     </item>
     
   </channel>
