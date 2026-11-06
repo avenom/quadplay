@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Текст</title>
+  <style>
+    :root { color-scheme: dark; }
+    html { background: #000000; }
+    body {
+      margin: 0;
+      padding: 10px;
+      background: #000000;
+      color: #FFFFFF;
+      font-family: Arial, sans-serif;
+      font-weight: bold;
+      font-size: 28px;
+      line-height: 1;
+    }
+    .controls {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 20px;
+    }
+    button {
+      font: inherit;
+      font-weight: bold;
+      line-height: 1;
+      width: 2em;
+      height: 2em;
+      color: #FFFFFF;
+      background: #222222;
+      border: 1px solid #FFFFFF;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    button:hover { background: #444444; }
+    button[aria-pressed="true"] { background: #555555; }
+    button:focus-visible { outline: 2px solid #FFFFFF; outline-offset: 3px; }
+    p { margin: 0 0 1em; }
+    p:last-child { margin-bottom: 0; }
+  </style>
+</head>
+<body>
+  <main>
+    <p>Всем привет! Это канал Квадплэй. Меня зовут ДанИс, и я начинаю проходить игру, Ворд оф Варкрафт: Форева, с Квадстиком на ПК. Следить за расписанием канала, можно на сайте Квадплэй точка ру, или подписывайтесь на телеграм-канал, чтобы получать уведомления.</p>
+
+    <p>В игре есть официальная поддержка геймпадов, поэтому я буду тестировать свой, универсальный профиль эмуляции, геймпада Иксбокса на ПК.</p>
+
+    <p>Последний раз я активно играл в ВОВ, во времена дополнения Шэдоулэнс, еще до покупки Квадстика. Также залетал на пару недель, во время выхода дополнений для классической версии.</p>
+
+    <p>В первом стриме я включу только один аддон КэтКвэст, от ютубера Котея, который сделал монументальный аддон, добавляющий в игру сгенерированную, русскую озвучку квестов, книг и историю мест.</p>
+
+    <p>Буду играть за Орду, за тупого Орка, класс Охотник. Специализация Повелитель Зверей всегда была самой простой и удобной в прокачке.</p>
+
+    <p>Имя, Ого, можно еще второе имя выбрать. Не помню такого в Вов. Ну как можно назвать Орка? Конечно же Локтар Огар, что в переводе с оркского значит Победа или смерть.</p>
+  </main>
+  <div class="controls" aria-label="Управление текстом">
+    <button type="button" id="decrease" aria-label="Уменьшить размер текста">−</button>
+    <button type="button" id="increase" aria-label="Увеличить размер текста">+</button>
+    <button type="button" id="bold-toggle" aria-label="Переключить жирный шрифт" aria-pressed="true" title="Включить или выключить жирный шрифт">B</button>
+  </div>
+  <script>
+    (() => {
+      const key = 'quadplay-text-font-size';
+      const boldKey = 'quadplay-text-bold';
+      const minSize = 14;
+      const maxSize = 72;
+      const step = 2;
+      const defaultSize = 28;
+      let size = defaultSize;
+      let isBold = true;
+
+      try {
+        const stored = Number(localStorage.getItem(key));
+        if (Number.isFinite(stored) && stored >= minSize && stored <= maxSize) {
+          size = stored;
+        }
+        isBold = localStorage.getItem(boldKey) !== 'false';
+      } catch (_) {
+        // Страница работает и при запрете локального хранилища.
+      }
+
+      function updateFontSize(newSize) {
+        size = Math.max(minSize, Math.min(maxSize, newSize));
+        document.body.style.fontSize = `${size}px`;
+        try { localStorage.setItem(key, String(size)); } catch (_) {}
+      }
+
+      const boldButton = document.getElementById('bold-toggle');
+      function updateBold(value) {
+        isBold = value;
+        document.querySelector('main').style.fontWeight = isBold ? 'bold' : 'normal';
+        boldButton.setAttribute('aria-pressed', String(isBold));
+        try { localStorage.setItem(boldKey, String(isBold)); } catch (_) {}
+      }
+
+      boldButton.addEventListener('click', () => updateBold(!isBold));
+      document.getElementById('increase').addEventListener('click', () => updateFontSize(size + step));
+      document.getElementById('decrease').addEventListener('click', () => updateFontSize(size - step));
+      updateFontSize(size);
+      updateBold(isBold);
+    })();
+  </script>
+</body>
+</html>
