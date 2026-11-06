@@ -21,14 +21,16 @@
       display: flex;
       justify-content: center;
       gap: 10px;
+      flex-wrap: wrap;
       margin-bottom: 20px;
     }
     button {
+      box-sizing: border-box;
       font: inherit;
       font-weight: bold;
       line-height: 1;
       width: 2em;
-      height: 2em;
+      height: 1em;
       color: #FFFFFF;
       background: #222222;
       border: 1px solid #FFFFFF;
@@ -37,7 +39,22 @@
     }
     button:hover { background: #444444; }
     button[aria-pressed="true"] { background: #555555; }
-    button:focus-visible { outline: 2px solid #FFFFFF; outline-offset: 3px; }
+    button:focus-visible,
+    input[type="color"]:focus-visible { outline: 2px solid #FFFFFF; outline-offset: 3px; }
+    input[type="color"] {
+      font: inherit;
+      width: 2em;
+      height: 1em;
+      box-sizing: border-box;
+      padding: 4px;
+      background: #222222;
+      border: 1px solid #FFFFFF;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    input[type="color"]::-webkit-color-swatch-wrapper { padding: 0; }
+    input[type="color"]::-webkit-color-swatch { border: none; border-radius: 2px; }
+    input[type="color"]::-moz-color-swatch { border: none; border-radius: 2px; }
     p { margin: 0 0 1em; }
     p:last-child { margin-bottom: 0; }
   </style>
@@ -47,6 +64,8 @@
     <button type="button" id="decrease" aria-label="Уменьшить размер текста">−</button>
     <button type="button" id="increase" aria-label="Увеличить размер текста">+</button>
     <button type="button" id="bold-toggle" aria-label="Переключить жирный шрифт" aria-pressed="true" title="Включить или выключить жирный шрифт">B</button>
+    <button type="button" id="uppercase-toggle" aria-label="Переключить прописные буквы" aria-pressed="false" title="Включить или выключить прописные буквы">АА</button>
+    <input type="color" id="text-color" value="#ffffff" aria-label="Выбрать цвет текста" title="Выбрать цвет текста">
   </div>
   <main>
     <p>В игре есть официальная поддержка геймпадов, поэтому я буду тестировать свой, универсальный профиль эмуляции, геймпада Иксбокса на ПК.</p>
@@ -63,12 +82,16 @@
     (() => {
       const key = 'quadplay-text-font-size';
       const boldKey = 'quadplay-text-bold';
+      const uppercaseKey = 'quadplay-text-uppercase';
+      const colorKey = 'quadplay-text-color';
       const minSize = 14;
       const maxSize = 72;
       const step = 2;
       const defaultSize = 28;
       let size = defaultSize;
       let isBold = true;
+      let isUppercase = false;
+      let textColor = '#ffffff';
 
       try {
         const stored = Number(localStorage.getItem(key));
@@ -76,6 +99,11 @@
           size = stored;
         }
         isBold = localStorage.getItem(boldKey) !== 'false';
+        isUppercase = localStorage.getItem(uppercaseKey) === 'true';
+        const storedColor = localStorage.getItem(colorKey);
+        if (storedColor && /^#[0-9a-fA-F]{6}$/.test(storedColor)) {
+          textColor = storedColor;
+        }
       } catch (_) {
         // Страница работает и при запрете локального хранилища.
       }
@@ -94,11 +122,33 @@
         try { localStorage.setItem(boldKey, String(isBold)); } catch (_) {}
       }
 
+      const main = document.querySelector('main');
+      const uppercaseButton = document.getElementById('uppercase-toggle');
+      function updateUppercase(value) {
+        isUppercase = value;
+        main.style.textTransform = isUppercase ? 'uppercase' : 'none';
+        uppercaseButton.setAttribute('aria-pressed', String(isUppercase));
+        try { localStorage.setItem(uppercaseKey, String(isUppercase)); } catch (_) {}
+      }
+
+      const colorPicker = document.getElementById('text-color');
+      function updateTextColor(value) {
+        if (!/^#[0-9a-fA-F]{6}$/.test(value)) return;
+        textColor = value;
+        main.style.color = textColor;
+        colorPicker.value = textColor;
+        try { localStorage.setItem(colorKey, textColor); } catch (_) {}
+      }
+
       boldButton.addEventListener('click', () => updateBold(!isBold));
+      uppercaseButton.addEventListener('click', () => updateUppercase(!isUppercase));
+      colorPicker.addEventListener('input', () => updateTextColor(colorPicker.value));
       document.getElementById('increase').addEventListener('click', () => updateFontSize(size + step));
       document.getElementById('decrease').addEventListener('click', () => updateFontSize(size - step));
       updateFontSize(size);
       updateBold(isBold);
+      updateUppercase(isUppercase);
+      updateTextColor(textColor);
     })();
   </script>
 </body>
