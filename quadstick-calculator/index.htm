@@ -1,0 +1,748 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark">
+<title>Калькулятор доставки QuadStick — QuadPlay</title>
+<meta name="description" content="Калькулятор стоимости покупки QuadStick и доставки в Россию через Prostobox: курс ЦБ РФ, цены, доставка, пошлина и итог в долларах и рублях.">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#09081a">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="ru_RU">
+<meta property="og:site_name" content="QuadPlay">
+<meta property="og:title" content="Калькулятор доставки QuadStick">
+<meta property="og:description" content="Рассчитайте стоимость покупки и доставки QuadStick через Prostobox в долларах и рублях. Автоматическое обновление курса ЦБ РФ.">
+<meta property="og:image" content="https://quadplay.ru/quadstick-calculator-og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:alt" content="QuadPlay — калькулятор доставки QuadStick, расчёт стоимости в долларах и рублях">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Калькулятор доставки QuadStick">
+<meta name="twitter:description" content="Стоимость покупки, доставки и таможенной пошлины в долларах и рублях.">
+<meta name="twitter:image" content="https://quadplay.ru/quadstick-calculator-og.png">
+<meta name="twitter:image:alt" content="QuadPlay — калькулятор доставки QuadStick">
+<!-- Предполагаемый адрес публикации: измените оба URL, если путь на хостинге отличается. -->
+<link rel="canonical" href="https://quadplay.ru/quadstick-calculator">
+<meta property="og:url" content="https://quadplay.ru/quadstick-calculator">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%232b3155'/%3E%3Crect x='15' y='9' width='34' height='46' rx='6' fill='none' stroke='%23a6d0ff' stroke-width='3'/%3E%3Crect x='21' y='15' width='22' height='9' rx='2' fill='%23a6d0ff'/%3E%3Cpath d='M23 32h4m10 0h4M23 40h4m10 0h4M23 48h4m10 0h4' stroke='white' stroke-width='4' stroke-linecap='round'/%3E%3C/svg%3E">
+<style>
+:root {
+  --page: #09081a;
+  --field: rgba(6, 8, 24, 0.65);
+  --line: rgba(255, 255, 255, 0.12);
+  --control-border: #8996b8;
+  --text: #f7f7ff;
+  --muted: rgba(236, 238, 255, 0.78);
+  --accent-text: #ffffff;
+  --focus: #ffffff;
+  --error: #ffb0b8;
+  --shadow: 0 18px 48px rgba(0, 0, 0, 0.32);
+  --input-width: 136px;
+  font-family: Arial, Helvetica, sans-serif;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html { min-height: 100%; }
+body {
+  margin: 0;
+  min-height: 100vh;
+  color: var(--text);
+  font-size: 16px;
+  line-height: 1.5;
+  background: var(--page);
+  position: relative;
+}
+body::before {
+  content: "";
+  position: fixed;
+  inset: -6px;
+  filter: blur(2px);
+  /* Фон на CSS: цветовые переходы и вертикальные ребристые полосы.
+     Масштаб полос зависит от размера окна, как у прежнего фонового изображения. */
+  --rib: max(1.041667vw, 1.851852vh);
+  background:
+    radial-gradient(circle at 20% 78%, rgba(113, 162, 255, 0.26), transparent 35%),
+    radial-gradient(circle at 80% 82%, rgba(230, 85, 198, 0.22), transparent 34%),
+    linear-gradient(180deg, rgba(4, 5, 18, 0.12), rgba(4, 5, 18, 0.26)),
+    linear-gradient(180deg, rgba(5, 7, 24, .52), rgba(5, 6, 22, .78)),
+    repeating-linear-gradient(90deg,
+      rgba(0, 0, 20, .22) 0,
+      rgba(0, 0, 20, .12) calc(var(--rib) * .22),
+      rgba(225, 220, 255, .07) calc(var(--rib) * .80),
+      rgba(225, 220, 255, .20) calc(var(--rib) * .97),
+      rgba(0, 0, 20, .22) var(--rib)),
+    linear-gradient(180deg, rgba(10, 9, 51, .98) 0%, rgba(10, 9, 51, .76) 26%,
+      rgba(10, 9, 51, .55) 50%, rgba(10, 9, 51, .30) 75%, transparent 100%),
+    linear-gradient(90deg, #145ba8 0%, #5171c0 15%, #7e6dc1 30%,
+      #a95cbb 50%, #b14ab1 70%, #a3379f 85%, #8e298c 100%);
+  pointer-events: none;
+}
+/* Компоновка и типографика */
+main { width: min(100% - 32px, 920px); margin: 0 auto; padding: 32px 0 32px; position: relative; z-index: 1; }
+header { margin-bottom: 24px; }
+h1 { margin: 0 0 8px; font-size: clamp(26px, 4vw, 40px); line-height: 1.15; letter-spacing: -.025em; text-shadow: 0 2px 16px rgba(0,0,0,.25); }
+.subtitle { margin: 0; color: var(--muted); }
+.layout { display: grid; grid-template-columns: minmax(0, 1fr) minmax(250px, 0.62fr); gap: 16px; align-items: start; }
+.panel {
+  background: linear-gradient(180deg, rgba(16, 18, 46, 0.76), rgba(10, 12, 34, 0.82));
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  padding: 22px;
+  min-width: 0;
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(14px) saturate(130%);
+  -webkit-backdrop-filter: blur(14px) saturate(130%);
+}
+h2 { font-size: 18px; margin: 0 0 14px; }
+.field-row { display: grid; grid-template-columns: 24px minmax(0, 1fr) var(--input-width); align-items: start; gap: 16px 12px; padding: 15px 0; border-top: 1px solid var(--line); }
+.field-row:first-of-type { border: 0; padding-top: 0; }
+.field-row:last-of-type { padding-bottom: 0; }
+/* Поля и ссылки */
+label, .position-label { font-weight: 600; display: block; font-size: 16px; }
+.source-link { color: #a6d0ff; text-decoration: underline; text-underline-offset: 3px; text-decoration-color: rgba(166,208,255,.65); }
+.source-link:hover { color: #d4e9ff; text-decoration-color: currentColor; }
+.external-icon { width: 13px; height: 13px; vertical-align: -1px; margin-left: 4px; color: inherit; }
+
+.hint { color: var(--muted); font-size: 14px; margin: 4px 0 0; line-height: 1.45; }
+.input-wrap {
+  display: flex; align-items: center; background: var(--field);
+  border: 1px solid var(--control-border); border-radius: 10px;
+  padding: 0 10px; min-height: 46px; gap: 5px;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.04);
+  transition: border-color 160ms ease, background-color 160ms ease, box-shadow 160ms ease, outline-color 160ms ease;
+  outline: 2px solid transparent; outline-offset: 2px;
+}
+input { background: transparent; border: 0; color: var(--text); font: inherit; font-size: 18px; font-variant-numeric: tabular-nums; width: 100%; min-width: 0; text-align: right; padding: 10px 0; outline: none; }
+.unit { color: var(--muted); font-size: 14px; }
+/* Актуальность исходных цен и детализация оплаты */
+.payment-details { display: grid; gap: 8px; }
+.payment-row { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, auto); gap: 6px 10px; align-items: start; }
+.payment-title { margin: 0; font-size: 14px; font-weight: 600; overflow-wrap: anywhere; }
+.payment-caption { margin: 3px 0 0; font-size: 12px; color: var(--muted); }
+.payment-values { text-align: right; min-width: 0; max-width: 125px; font-variant-numeric: tabular-nums; overflow-wrap: anywhere; }
+.payment-usd { display: block; color: #a6d0ff; font-size: 17px; font-weight: 700; }
+.payment-rub { display: block; font-size: 13px; color: var(--muted); }
+.payment-note { margin: 0; font-size: 12px; color: var(--muted); line-height: 1.45; }
+/* Итоговая панель и кнопки */
+.total-panel { position: sticky; top: 16px; padding-block: 16px; background: linear-gradient(180deg, rgba(20, 16, 52, 0.82), rgba(12, 11, 36, 0.9)); border-color: rgba(142,197,255,.48); box-shadow: var(--shadow), 0 0 15px rgba(142,197,255,.10), inset 0 0 0 1px rgba(166,208,255,.04); }
+.total-panel h2 { margin-bottom: 10px; }
+.total-label { color: var(--muted); font-size: 13px; margin: 0; }
+.total-usd { font-size: 22px; font-weight: 600; color: #c1d8f6; margin: 5px 0 4px; }
+.total-rub { font-size: clamp(32px, 4.5vw, 42px); font-weight: 800; color: #ffffff; letter-spacing: -.045em; margin: 4px 0 20px; }
+.total-usd, .total-rub { overflow-wrap: anywhere; font-variant-numeric: tabular-nums; line-height: 1.2; }
+.separator { border: 0; border-top: 1px solid var(--line); margin: 12px 0; }
+button { display: flex; align-items: center; justify-content: center; gap: 9px; width: 100%; min-height: 46px; border: 1px solid transparent; background: linear-gradient(105deg, #4e619e, #68528e); color: var(--accent-text); border-radius: 10px; font: inherit; font-weight: 700; cursor: pointer; padding: 10px 12px; box-shadow: 0 10px 24px rgba(27, 18, 75, 0.28); transition: filter 120ms ease, transform 120ms ease, box-shadow 120ms ease, background-color 120ms ease; }
+button:hover { filter: brightness(1.06); }
+button:focus-visible, a:focus-visible { outline: 2px solid var(--focus); outline-offset: 4px; }
+:where(input, button, a) { scroll-margin-block: 12px; }
+button.secondary { margin-top: 10px; background: rgba(255,255,255,0.04); color: var(--text); border-color: var(--control-border); box-shadow: none; }
+button.secondary:hover { background: rgba(255,255,255,0.08); }
+button:disabled { opacity: .5; cursor: not-allowed; }
+.status { font-size: 12px; color: var(--muted); margin: 12px 0 0; }
+.status:empty { margin: 0; }
+.button-icon { width: 18px; height: 18px; flex: 0 0 18px; }
+.error { color: var(--error); }
+@media (max-width: 820px) { main { padding: 24px 0; } .layout { grid-template-columns: 1fr; } .total-panel { position: static; } }
+@media (max-width: 370px) { .panel { padding: 15px; border-radius: 15px; } }
+/* Отдельный блок курса доллара */
+.rate-panel {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) var(--input-width);
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 16px;
+  padding-block: 14px;
+  background: linear-gradient(115deg, rgba(38, 56, 108, .82), rgba(52, 31, 83, .82));
+  border-color: rgba(142, 197, 255, .38);
+}
+.rate-panel label { color: #d5e6ff; font-size: 16px; }
+/* Акцентное поле курса доллара */
+.rate-panel .input-wrap {
+  background-color: #303859;
+  border-color: #8cbaff;
+}
+.rate-panel input {
+  font-size: 22px;
+  font-weight: 600;
+  line-height: 27px;
+  color: #ffffff;
+}
+.rate-panel .unit { color: #d5e6ff; }
+.rate-panel .input-wrap:focus-within {
+  background-color: #37446a;
+  border-color: #a6d0ff;
+  box-shadow: 0 0 16px rgba(142, 197, 255, .32);
+}
+@media (max-width: 370px) {
+  .rate-panel { grid-template-columns: minmax(0, 1fr) var(--input-width); gap: 10px; }
+}
+/* Пересчёт позиций и мобильный итог */
+.price-column { min-width: 0; display: grid; gap: 5px; }
+.item-rub { display: block; text-align: right; color: #e5efff; font-size: 14px; font-weight: 600; font-variant-numeric: tabular-nums; line-height: 1.35; overflow-wrap: anywhere; }
+.mobile-total { display: none; }
+@media (max-width: 820px) {
+  main { padding-bottom: calc(var(--mobile-total-height, 100px + env(safe-area-inset-bottom, 0px)) + 16px); }
+  html { scroll-padding-bottom: calc(var(--mobile-total-height, 100px + env(safe-area-inset-bottom, 0px)) + 16px); }
+  .mobile-total { display: block; position: fixed; bottom: 0; left: 0; right: 0; z-index: 10; padding: 12px 16px calc(12px + env(safe-area-inset-bottom, 0px)); background: rgba(17, 15, 42, .97); border-top: 1px solid rgba(142, 197, 255, .38); box-shadow: 0 -8px 32px rgba(0,0,0,.28); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); }
+  .mobile-total-inner { display: flex; align-items: center; justify-content: space-between; gap: 12px; max-width: 920px; margin: auto; }
+  .mobile-total-label { font-size: 14px; font-weight: 700; color: var(--muted); }
+  .mobile-total-values { text-align: right; display: flex; flex-wrap: wrap; align-items: baseline; justify-content: flex-end; gap: 2px 12px; min-width: 0; font-variant-numeric: tabular-nums; overflow-wrap: anywhere; }
+  .mobile-usd { font-size: 14px; color: #c1d8f6; }
+  .mobile-rub { font-size: 24px; line-height: 1.25; color: #ffffff; font-weight: 800; }
+}
+@media (max-width: 370px) {
+  .mobile-rub { font-size: 22px; }
+  .mobile-total-values { flex-direction: column; align-items: flex-end; }
+}
+
+/* Нумерация статей расходов */
+.item-number { color: #a5a3c6; font-size: 14px; font-weight: 600; font-variant-numeric: tabular-nums; line-height: 24px; }
+@media (max-width: 480px) {
+  :root { --input-width: 108px; }
+  .panel { padding: 16px; }
+  .rate-panel { padding-block: 8px; }
+  .field-row { grid-template-columns: 20px minmax(0, 1fr) var(--input-width); column-gap: 8px; }
+  .item-number { font-size: 13px; }
+}
+@media (max-width: 360px) {
+  .field-row { grid-template-columns: 20px minmax(0, 1fr); }
+  .field-row .price-column { grid-column: 2; width: var(--input-width); max-width: 100%; justify-self: end; }
+}
+
+/* Интерактивные состояния полей и кнопок */
+.input-wrap:focus-within {
+  background-color: rgba(23, 35, 70, .85);
+  border-color: #a6d0ff;
+  outline-color: rgba(166, 208, 255, .9);
+  box-shadow: 0 0 14px rgba(142, 197, 255, .20);
+}
+button:not(:disabled):active { transform: translateY(1px); filter: brightness(.88); box-shadow: inset 0 2px 5px rgba(0, 0, 0, .24); }
+button.secondary:not(:disabled):active { background-color: rgba(255, 255, 255, .12); }
+@media (prefers-reduced-motion: reduce) {
+  .input-wrap, button { transition: none; }
+  button:not(:disabled):active { transform: none; }
+}
+
+/* Автоматическое обновление курса ЦБ РФ */
+.rate-heading { display: flex; align-items: center; flex-wrap: wrap; gap: 6px 10px; }
+.rate-refresh { width: 40px; min-height: 40px; padding: 0; flex: 0 0 40px; border: 1px solid var(--control-border); background: rgba(12,18,48,.4); color: #a6d0ff; box-shadow: none; }
+.rate-refresh:hover:not(:disabled) { background: rgba(142,197,255,.14); }
+.rate-refresh:disabled { opacity: .65; cursor: wait; }
+.rate-refresh .button-icon { width: 19px; height: 19px; }
+.rate-refresh[aria-busy="true"] .button-icon { animation: rate-spin 900ms linear infinite; transform-origin: center; }
+@keyframes rate-spin { to { transform: rotate(360deg); } }
+@media (prefers-reduced-motion: reduce) { .rate-refresh[aria-busy="true"] .button-icon { animation: none; } }
+.rate-source { color: #a6d0ff; }
+.rate-source[data-kind="warning"] { color: #ffd5ad; }
+.rate-source[data-kind="manual"] { color: var(--muted); }
+
+/* Примечания под калькулятором */
+.notes-panel { margin-top: 16px; }
+.notes-panel h2 { margin-bottom: 10px; }
+.notes-list { margin: 0; padding-left: 21px; color: var(--muted); font-size: 14px; line-height: 1.55; }
+.notes-list li + li { margin-top: 12px; }
+.notes-list li::marker { color: #a6d0ff; }
+.notes-list strong { color: var(--text); font-weight: 700; }
+.notes-links { margin-top: 16px; font-size: 14px; color: var(--muted); }
+.notes-links h2 { margin-bottom: 12px; color: var(--text); }
+.notes-links p { margin: 0; }
+.notes-links p + p { margin-top: 12px; }
+.notes-links a { display: inline-block; min-height: 24px; padding-block: 3px; overflow-wrap: anywhere; }
+.telegram-icon { width: 18px; height: 18px; margin-right: 7px; vertical-align: -4px; fill: currentColor; }
+.referral-box { margin-top: 20px; padding: 16px; border: 1px solid rgba(142,197,255,.24); border-radius: 12px; background: rgba(142,197,255,.07); }
+.referral-box h3 { font-size: 16px; margin: 0 0 6px; color: var(--text); }
+.referral-box p { margin: 0 0 12px; font-size: 14px; color: var(--muted); }
+.referral-code { display: inline-flex; width: fit-content; max-width: 100%; justify-content: space-between; align-items: center; gap: 12px; min-height: 46px; padding: 10px 14px; border: 1px solid var(--control-border); border-radius: 8px; background: #292b49; box-shadow: none; color: #a6d0ff; font-size: 16px; font-weight: 700; text-align: left; }
+.referral-code > span:first-child { min-width: 0; overflow-wrap: anywhere; user-select: all; font-family: ui-monospace, "Cascadia Code", Consolas, monospace; }
+@media (max-width: 480px) {
+  .referral-box { padding: 12px; }
+  .referral-code { font-size: 14px; padding-inline: 12px; gap: 10px; }
+}
+.referral-code .button-icon { flex: 0 0 18px; width: 18px; height: 18px; }
+
+.referral-code:hover { color: #d4e9ff; background: #343b5b; }
+.referral-code:not(:disabled):active { box-shadow: none; transform: translateY(1px); }
+.referral-feedback { display: block; margin-top: 8px; color: #a6d0ff; font-size: 13px; }
+.referral-feedback:empty { display: none; }
+
+/* Плавная смена иконок копирования без изменения размеров кнопки. */
+.copy-icon-stack { position: relative; display: inline-grid; flex: 0 0 18px; width: 18px; height: 18px; user-select: none; }
+.copy-icon-stack > svg { grid-area: 1 / 1; transition: opacity 180ms ease, transform 180ms ease; }
+.copy-icon-stack > :first-child { opacity: 1; transform: scale(1); }
+.copy-icon-stack > :last-child { opacity: 0; transform: scale(.75); color: #a9ebc8; }
+[data-copied="true"] .copy-icon-stack > :first-child { opacity: 0; transform: scale(.75); }
+[data-copied="true"] .copy-icon-stack > :last-child { opacity: 1; transform: scale(1); }
+@media (prefers-reduced-motion: reduce) { .copy-icon-stack > svg { transition: none; transform: none !important; } }
+/* Снижаем нагрузку на устройствах с малым числом ядер/памяти и при экономии данных. */
+html.low-effects body::before { filter: none; inset: 0; }
+html.low-effects .panel, html.low-effects .mobile-total { backdrop-filter: none; -webkit-backdrop-filter: none; }
+html.low-effects .panel { background: linear-gradient(180deg, rgba(16,18,46,.94), rgba(10,12,34,.96)); }
+html.low-effects .rate-panel { background: linear-gradient(115deg, rgba(38,56,108,.95), rgba(52,31,83,.95)); }
+html.low-effects .total-panel { background: linear-gradient(180deg, rgba(20,16,52,.96), rgba(12,11,36,.97)); }
+@media (prefers-reduced-data: reduce), (update: slow) {
+  body::before { filter: none; inset: 0; }
+  .panel, .mobile-total { backdrop-filter: none; -webkit-backdrop-filter: none; }
+  .panel { background: linear-gradient(180deg, rgba(16,18,46,.94), rgba(10,12,34,.96)); }
+  .rate-panel { background: linear-gradient(115deg, rgba(38,56,108,.95), rgba(52,31,83,.95)); }
+  .total-panel { background: linear-gradient(180deg, rgba(20,16,52,.96), rgba(12,11,36,.97)); }
+}
+.no-js-notice { margin-bottom: 16px; border-color: rgba(255,213,173,.5); }
+.no-js-notice p { margin: 0; }
+/* Accessibility and print controls */
+.field-error { color: var(--error); font-size: 13px; line-height: 1.35; margin: 3px 0 0; overflow-wrap: anywhere; }
+.field-error[hidden] { display: none; }
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; border: 0; }
+.input-wrap:has(input[aria-invalid="true"]), .rate-panel .input-wrap:has(input[aria-invalid="true"]) { border-color: var(--error); }
+.rate-panel .rate-control { display: grid; gap: 4px; min-width: 0; }
+@media (max-width: 820px) {
+  body:has(input:focus) .mobile-total { visibility: hidden; }
+}
+@media (forced-colors: active) {
+  .input-wrap, button, button.secondary, .rate-refresh, .referral-code { border: 1px solid ButtonText; }
+  .input-wrap:focus-within, button:focus-visible, a:focus-visible { outline: 2px solid Highlight; }
+  .input-wrap:has(input[aria-invalid="true"]) { border: 2px dashed Mark; }
+  body::before { display: none; }
+}
+.print-value { display: none; }
+@page { margin: 15mm; }
+@media print {
+  :root { color-scheme: light; --input-width: 140px; --text: #111; --muted: #444; --line: #ccc; }
+  html, body { background: #fff !important; color: #111 !important; min-height: 0; scroll-padding: 0; font-size: 11pt; }
+  body::before, .mobile-total, .notes-panel, .notes-links, button, .status:empty, .external-icon, #rate-hint { display: none !important; }
+  main { width: 100%; max-width: none; padding: 0 !important; margin: 0; }
+  header { margin-bottom: 12pt; }
+  h1 { font-size: 22pt; margin-top: 0; text-shadow: none; }
+  .subtitle, .hint, .rate-source, .rate-panel label, .item-number, .item-rub, .total-label, .total-usd, .total-rub, a.source-link { color: #222 !important; text-shadow: none; }
+  .layout { display: block; }
+  .panel, html.low-effects .panel { background: #fff !important; border: 1px solid #bbb !important; border-radius: 6pt; box-shadow: none !important; backdrop-filter: none !important; -webkit-backdrop-filter: none !important; padding: 10pt; }
+  .rate-panel, .field-row, .total-panel { break-inside: avoid; page-break-inside: avoid; }
+  .rate-panel { margin-bottom: 9pt; grid-template-columns: minmax(0,1fr) var(--input-width); }
+  .field-row { grid-template-columns: 24px minmax(0,1fr) var(--input-width); padding: 8pt 0; }
+  .field-row .price-column { grid-column: auto; width: auto; justify-self: stretch; }
+  .input-wrap { display: none; }
+  .print-value { display: block; text-align: right; font-weight: 700; font-variant-numeric: tabular-nums; overflow-wrap: anywhere; }
+  .total-panel { position: static; margin-top: 9pt; }
+  .total-panel > .separator:last-of-type { display: none; }
+  .payment-usd, .payment-rub, .payment-note, .payment-caption { color: #222 !important; }
+  .payment-values { max-width: none; }
+  .total-rub { font-size: 25pt; margin-bottom: 8pt; }
+  .total-usd { font-size: 16pt; }
+  .hint, .item-rub { font-size: 10pt; }
+  .field-error { color: #222 !important; }
+}
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <h1>Калькулятор доставки QuadStick</h1>
+    <p class="subtitle">Расчёт стоимости покупки <a class="source-link" href="https://quadstick.com/" target="_blank" rel="noopener noreferrer">QuadStick</a> с иностранной карты и доставки в Россию мейлфорвардером <a class="source-link" href="https://prostobox.com/ru" target="_blank" rel="noopener noreferrer">Prostobox</a>.</p>
+  </header>
+  <noscript>
+    <style>.rate-panel,.layout,.mobile-total,#referral-copy { display:none !important; } main { padding-bottom:24px !important; }</style>
+    <section class="panel no-js-notice" role="alert"><h2>JavaScript отключён</h2><p>Включите JavaScript в настройках браузера и обновите страницу, чтобы использовать калькулятор и автоматически получать курс доллара.</p></section>
+  </noscript>
+  <section class="panel rate-panel" aria-label="Курс доллара">
+          <div><div class="rate-heading"><label for="rate">Курс доллара</label><button id="refresh-rate" class="rate-refresh" type="button" aria-busy="false" aria-label="Обновить курс доллара" title="Обновить курс доллара"><svg class="button-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 11a8 8 0 0 0-14-5L3 9m0-5v5h5M4 13a8 8 0 0 0 14 5l3-3m0 5v-5h-5"/></svg></button></div><p class="hint rate-source" id="rate-source" role="status">Загрузка курса ЦБ РФ…</p><p class="hint" id="rate-hint">Можно изменить курс вручную.</p></div>
+          <div class="rate-control"><div class="input-wrap"><input id="rate" form="calculator" value="82,32" inputmode="decimal" autocomplete="off" aria-describedby="rate-error rate-source rate-hint rate-unit" required><span class="unit" aria-hidden="true">₽</span><span class="sr-only" id="rate-unit">Рублей за один доллар США</span></div><p class="field-error" id="rate-error" hidden></p><output class="print-value" id="rate-print" aria-hidden="true"></output></div>
+  </section>
+  <div class="layout">
+    <section class="panel" aria-label="Исходные данные">
+      <form id="calculator" novalidate>
+        <span class="sr-only" id="currency-usd">Стоимость в долларах США</span>
+        <div class="field-row">
+          <span class="item-number" aria-hidden="true">01</span>
+          <div><div class="position-label" id="controller-label"><a class="source-link" href="https://www.quadstick.com/shop/quadstick-original-game-controller" target="_blank" rel="noopener noreferrer">Original QuadStick Game Controller<svg class="external-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-9 9M19 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h5"/></svg></a></div><p class="hint" id="controller-note">Оптимальный выбор для большинства людей с инвалидностью.</p></div>
+          <div class="price-column"><div class="input-wrap"><input id="controller" aria-labelledby="controller-label currency-usd" value="449" inputmode="decimal" autocomplete="off" aria-describedby="controller-error controller-rub controller-note" required><span class="unit" aria-hidden="true">$</span></div><p class="field-error" id="controller-error" hidden></p><output class="print-value" id="controller-print" aria-hidden="true"></output><output class="item-rub" id="controller-rub" for="rate controller" aria-live="off">—</output></div>
+        </div>
+        <div class="field-row">
+          <span class="item-number" aria-hidden="true">02</span>
+          <div><div class="position-label" id="mount-label"><a class="source-link" href="https://www.quadstick.com/shop/mounting-arm-adapter-kit" target="_blank" rel="noopener noreferrer">Mounting Arm Adapter Kit<svg class="external-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-9 9M19 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h5"/></svg></a></div><p class="hint" id="mount-hint">Крепление QuadStick к любым кронштейнам и пантографам с крепёжным винтом 1/4″.</p></div>
+          <div class="price-column"><div class="input-wrap"><input id="mount" aria-labelledby="mount-label currency-usd" value="30" inputmode="decimal" autocomplete="off" aria-describedby="mount-error mount-rub mount-hint" required><span class="unit" aria-hidden="true">$</span></div><p class="field-error" id="mount-error" hidden></p><output class="print-value" id="mount-print" aria-hidden="true"></output><output class="item-rub" id="mount-rub" for="rate mount" aria-live="off">—</output></div>
+        </div>
+        <div class="field-row">
+          <span class="item-number" aria-hidden="true">03</span>
+          <div><div class="position-label" id="usa-label"><a class="source-link" href="https://www.prostobox.com/ru/blog/usps-prices-and-tariffs-for-american-delivery-service-to-russia-pb" target="_blank" rel="noopener noreferrer">Доставка по США<svg class="external-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-9 9M19 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h5"/></svg></a></div><p class="hint" id="usa-hint">Доставка службой USPS Priority Mail до склада мейлфорвардера Prostobox в Нью-Касле.</p></div>
+          <div class="price-column"><div class="input-wrap"><input id="usa" aria-labelledby="usa-label currency-usd" value="18" inputmode="decimal" autocomplete="off" aria-describedby="usa-error usa-rub usa-hint" required><span class="unit" aria-hidden="true">$</span></div><p class="field-error" id="usa-error" hidden></p><output class="print-value" id="usa-print" aria-hidden="true"></output><output class="item-rub" id="usa-rub" for="rate usa" aria-live="off">—</output></div>
+        </div>
+        <div class="field-row">
+          <span class="item-number" aria-hidden="true">04</span>
+          <div><div class="position-label" id="russia-label"><a class="source-link" href="https://www.prostobox.com/ru/prices#calculator" target="_blank" rel="noopener noreferrer">Доставка в Россию<svg class="external-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-9 9M19 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h5"/></svg></a></div><p class="hint" id="russia-hint">Доставка посылки весом 0,68 кг со склада Prostobox в Москву.</p><p class="hint" id="russia-note">Доставка тарифом SuperFast возможна в любой ПВЗ СДЭК в России.</p></div>
+          <div class="price-column"><div class="input-wrap"><input id="russia" aria-labelledby="russia-label currency-usd" value="18,99" inputmode="decimal" autocomplete="off" aria-describedby="russia-error russia-rub russia-hint russia-note" required><span class="unit" aria-hidden="true">$</span></div><p class="field-error" id="russia-error" hidden></p><output class="print-value" id="russia-print" aria-hidden="true"></output><output class="item-rub" id="russia-rub" for="rate russia" aria-live="off">—</output></div>
+        </div>
+        <div class="field-row">
+          <span class="item-number" aria-hidden="true">05</span>
+          <div><div class="position-label" id="duty-label"><a class="source-link" href="https://www.prostobox.com/ru/faq/tolls" target="_blank" rel="noopener noreferrer">Таможенная пошлина<svg class="external-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-9 9M19 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h5"/></svg></a></div><p class="hint" id="duty-note">Prostobox автоматически рассчитывает пошлину и включает ее в стоимость доставки.</p></div>
+          <div class="price-column"><div class="input-wrap"><input id="duty" aria-labelledby="duty-label currency-usd" value="49,98" inputmode="decimal" autocomplete="off" aria-describedby="duty-error duty-rub duty-note" required><span class="unit" aria-hidden="true">$</span></div><p class="field-error" id="duty-error" hidden></p><output class="print-value" id="duty-print" aria-hidden="true"></output><output class="item-rub" id="duty-rub" for="rate duty" aria-live="off">—</output></div>
+        </div>
+      </form>
+    </section>
+    <section class="panel total-panel" aria-labelledby="total-title">
+      <h2 id="total-title">Итоговая стоимость</h2>
+      <div aria-live="polite" aria-atomic="true">
+        <p class="total-label">В российских рублях</p>
+        <p id="total-rub" class="total-rub">46 590,65 ₽</p>
+        <p class="total-label">В долларах США</p>
+        <p id="total-usd" class="total-usd">565,97 $</p>
+        <hr class="separator">
+        <div class="payment-details" aria-label="Детализация по способу оплаты">
+          <div class="payment-row">
+            <div><p class="payment-title">Оплата иностранной картой</p><p class="payment-caption">Пункты 01–03</p></div>
+            <div class="payment-values"><span class="payment-usd" id="card-usd">—</span><span class="payment-rub" id="card-rub">—</span></div>
+          </div>
+          <div class="payment-row">
+            <div><p class="payment-title">Оплата через Prostobox</p><p class="payment-caption">Пункты 04–05</p></div>
+            <div class="payment-values"><span class="payment-usd" id="prostobox-usd">—</span><span class="payment-rub" id="prostobox-rub">—</span></div>
+          </div>
+          <p class="payment-note">Рублёвые суммы рассчитаны по указанному курсу. При оплате по внутреннему курсу Prostobox сумма может отличаться.</p>
+        </div>
+      </div>
+      <hr class="separator">
+      <button id="copy" type="button"><span class="copy-icon-stack" aria-hidden="true"><svg class="button-icon calculation-copy-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></svg><svg class="button-icon calculation-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m5 12 4 4L19 6"/></svg></span><span id="copy-label" aria-live="polite">Скопировать расчёт</span></button>
+      <button id="reset" type="button" class="secondary"><svg class="button-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3 12a9 9 0 1 0 2.6-6.4L3 8M3 3v5h5"/></svg><span>Сбросить значения</span></button>
+      <button id="print" type="button" class="secondary"><svg class="button-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6 9V3h12v6M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2M6 14h12v7H6zM18 12h1"/></svg><span>Распечатать расчёт</span></button>
+      <p id="status" class="status" role="status"></p>
+    </section>
+  </div>
+  <section class="panel notes-panel" aria-labelledby="notes-title">
+    <h2 id="notes-title">Условия покупки и доставки</h2>
+    <ul class="notes-list">
+      <li>Автоматическое получение <strong>только курса доллара</strong> для последующей калькуляции.</li>
+      <li>Данные в других полях прописаны <strong>вручную</strong> с учетом заказа на личном опыте и калькуляторов Prostobox.</li>
+      <li>В долларах оплачиваются только <strong>пункты 1-3.</strong></li>
+      <li><strong>Пункты 4-5</strong> можно оплатить в рублях по <strong>внутреннему курсу Prostobox</strong>, т.е. итоговая сумма будет выше.</li>
+      <li>Для международной доставки требуются <strong>паспортные данные и ИНН</strong>, которые заполняются на сайте Prostobox.</li>
+    </ul>
+    <div class="referral-box" aria-labelledby="referral-title">
+      <h3 id="referral-title">Скидка 10% на первый заказ</h3>
+      <p>Используйте реферальный код при оформлении первого заказа на Prostobox.</p>
+      <button type="button" class="referral-code" id="referral-copy" title="Скопировать реферальный код" aria-label="Скопировать реферальный код RP-865EGSDWBOAFV"><span>RP-865EGSDWBOAFV</span><span class="copy-icon-stack" aria-hidden="true"><svg class="button-icon referral-copy-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></svg><svg class="button-icon referral-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m5 12 4 4L19 6"/></svg></span></button>
+      <noscript><strong>RP-865EGSDWBOAFV</strong></noscript>
+      <span id="referral-feedback" class="referral-feedback" role="status" aria-live="polite"></span>
+    </div>
+  </section>
+  <section class="panel notes-links" aria-labelledby="useful-links-title">
+    <h2 id="useful-links-title">Полезные ссылки</h2>
+      <p><a class="source-link" href="https://t.me/quadstick_ru/9/22" target="_blank" rel="noopener noreferrer"><svg class="telegram-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M21.9 4.3 18.6 20c-.25 1.1-.9 1.36-1.8.85l-5-3.69-2.42 2.33c-.27.27-.5.5-1.02.5l.36-5.09L18 6.52c.4-.36-.09-.56-.62-.2L5.9 13.54l-4.94-1.55c-1.08-.34-1.1-1.08.22-1.59L20.5 2.95c.9-.33 1.68.21 1.4 1.35Z"/></svg>Пример заказа через Prostobox<svg class="external-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-9 9M19 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h5"/></svg></a></p>
+      <p><a class="source-link" href="https://t.me/quadstick_ru" target="_blank" rel="noopener noreferrer"><svg class="telegram-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M21.9 4.3 18.6 20c-.25 1.1-.9 1.36-1.8.85l-5-3.69-2.42 2.33c-.27.27-.5.5-1.02.5l.36-5.09L18 6.52c.4-.36-.09-.56-.62-.2L5.9 13.54l-4.94-1.55c-1.08-.34-1.1-1.08.22-1.59L20.5 2.95c.9-.33 1.68.21 1.4 1.35Z"/></svg>Группа поддержки пользователей QuadStick<svg class="external-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M13 5h6v6M19 5l-9 9M19 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h5"/></svg></a></p>
+  </section>
+</main>
+<aside class="mobile-total" aria-label="Итоговая стоимость">
+  <div class="mobile-total-inner">
+    <div class="mobile-total-label">Итого</div>
+    <div class="mobile-total-values">
+      <strong id="mobile-rub" class="mobile-rub">46 590,65 ₽</strong>
+      <span id="mobile-usd" class="mobile-usd">565,97 $</span>
+    </div>
+  </div>
+</aside>
+<script>
+'use strict';
+// Приблизительная оценка ресурсов устройства; отсутствие API не считается признаком слабого устройства.
+if ((navigator.hardwareConcurrency > 0 && navigator.hardwareConcurrency <= 4) ||
+    (navigator.deviceMemory > 0 && navigator.deviceMemory <= 4) ||
+    navigator.connection?.saveData === true) {
+  document.documentElement.classList.add('low-effects');
+}
+const ids = ['rate','controller','mount','usa','russia','duty'];
+const form = document.getElementById('calculator');
+const inputs = ids.map(id => document.getElementById(id));
+const usd = document.getElementById('total-usd');
+const rub = document.getElementById('total-rub');
+const status = document.getElementById('status');
+const copy = document.getElementById('copy');
+const copyLabel = document.getElementById('copy-label');
+const printButton = document.getElementById('print');
+let copyTimer;
+let copyVersion = 0;
+function resetCopyLabel() {
+  clearTimeout(copyTimer);
+  copyVersion++;
+  copy.removeAttribute('data-copied');
+  copyLabel.textContent = 'Скопировать расчёт';
+}
+function showCopied(version) {
+  if (version !== copyVersion) return;
+  clearTimeout(copyTimer);
+  copy.dataset.copied = 'true';
+  copyLabel.textContent = 'Расчёт скопирован';
+  copyTimer = setTimeout(resetCopyLabel, 3000);
+}
+const formatter = new Intl.NumberFormat('ru-RU', {minimumFractionDigits:2, maximumFractionDigits:2});
+function parseDecimal(value) {
+  const normalized = value.trim().replace(/[\s\u00a0\u202f]/g,'').replace(',', '.');
+  if (!/^\d+(?:\.\d+)?$/.test(normalized)) return NaN;
+  const n = Number(normalized);
+  return Number.isFinite(n) ? n : NaN;
+}
+function calculate(rate, prices) {
+  if (!Number.isFinite(rate) || rate <= 0 || prices.some(n => !Number.isFinite(n) || n < 0)) return null;
+  const card = prices.slice(0, 3).reduce((sum,n) => sum+n, 0);
+  const prostobox = prices.slice(3).reduce((sum,n) => sum+n, 0);
+  const dollars = card + prostobox;
+  const rubles = dollars * rate;
+  return Number.isFinite(rubles) ? {dollars, rubles, card, prostobox} : null;
+}
+function update() {
+  resetCopyLabel();
+  const values = inputs.map(i => parseDecimal(i.value));
+  inputs.forEach((input, index) => {
+    const value = values[index];
+    document.getElementById(input.id + '-print').textContent =
+      Number.isFinite(value) && (index !== 0 || value > 0) ? formatter.format(value) + (index === 0 ? ' ₽/$' : ' $') : '—';
+  });
+  inputs.forEach((i, index) => {
+    const n = values[index];
+    const invalid = !Number.isFinite(n) || n < 0 || (index === 0 && n === 0);
+    i.setAttribute('aria-invalid', String(invalid));
+    const error = document.getElementById(i.id + '-error');
+    error.hidden = !invalid;
+    error.textContent = invalid ? (index === 0 ? 'Введите курс больше нуля.' : 'Введите сумму от 0.') : '';
+  });
+  const result = calculate(values[0], values.slice(1));
+  usd.textContent = result ? formatter.format(result.dollars) + ' $' : '—';
+  rub.textContent = result ? formatter.format(result.rubles) + ' ₽' : '—';
+  for (const group of ['card', 'prostobox']) {
+    document.getElementById(group + '-usd').textContent = result ? formatter.format(result[group]) + ' $' : '—';
+    document.getElementById(group + '-rub').textContent = result ? formatter.format(result[group] * values[0]) + ' ₽' : '—';
+  }
+  inputs.slice(1).forEach((input, index) => {
+    const rate = values[0];
+    const price = values[index + 1];
+    const amount = rate * price;
+    document.getElementById(input.id + '-rub').textContent = Number.isFinite(amount) && rate > 0 && price >= 0 ? formatter.format(amount) + ' ₽' : '—';
+  });
+  document.getElementById('mobile-usd').textContent = usd.textContent;
+  document.getElementById('mobile-rub').textContent = rub.textContent;
+  copy.disabled = !result;
+  printButton.disabled = !result;
+  status.classList.toggle('error', !result);
+  status.textContent = result ? '' : 'Укажите неотрицательные суммы и курс больше нуля.';
+  return result;
+}
+// Курс ЦБ РФ через сторонний открытый JSON API. Ключ и сервер не требуются.
+const rateInput = document.getElementById('rate');
+const rateSource = document.getElementById('rate-source');
+const refreshRate = document.getElementById('refresh-rate');
+const rateCacheKey = 'quadplay.quadstick.usd-rub.cbr.v1';
+const rateEndpoint = 'https://www.cbr-xml-daily.ru/daily_json.js';
+let rateEditVersion = 0;
+let manualRate = false;
+let lastRate = null;
+let rateState = 'initial';
+function rateMessage(message, kind = 'normal') {
+  rateSource.textContent = message;
+  rateSource.dataset.kind = kind;
+}
+function validRate(record) {
+  return record && typeof record.rate === 'number' && Number.isFinite(record.rate) && record.rate >= 0.01 &&
+    typeof record.date === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(record.date) &&
+    Number.isFinite(Date.parse(record.date));
+}
+// Дата успешного запроса в часовом поясе Москвы, отдельно от даты действия курса.
+function moscowDay(now = new Date()) {
+  const parts = new Intl.DateTimeFormat('en-GB', {
+    timeZone: 'Europe/Moscow', year: 'numeric', month: '2-digit', day: '2-digit'
+  }).formatToParts(now);
+  const part = type => parts.find(p => p.type === type).value;
+  return `${part('year')}-${part('month')}-${part('day')}`;
+}
+function readRateCache() {
+  try {
+    const record = JSON.parse(localStorage.getItem(rateCacheKey));
+    return validRate(record) ? record : null;
+  } catch { return null; }
+}
+function storeRate(record) {
+  try { localStorage.setItem(rateCacheKey, JSON.stringify(record)); } catch {}
+}
+function rateDate(date) { return date.split('-').reverse().join('.'); }
+function setDefaultRate(record, apply) {
+  // Сброс возвращает последний полученный курс, а не старое значение из HTML.
+  lastRate = record;
+  const currentValue = rateInput.value;
+  const formatted = record.rate.toFixed(2).replace('.', ',');
+  rateInput.defaultValue = formatted;
+  rateInput.value = apply ? formatted : currentValue;
+}
+function showDefaultRate() {
+  if (manualRate) { rateMessage('Курс введён вручную.', 'manual'); return; }
+  if (lastRate) {
+    const caption = 'Курс ЦБ РФ · ' + rateDate(lastRate.date);
+    if (rateState === 'failed') rateMessage(caption + ' (сохранённый; обновить не удалось).', 'warning');
+    else if (rateState === 'loading') rateMessage(caption + ' (обновление…)');
+    else if (rateState === 'success') rateMessage(caption);
+    else rateMessage(caption + ' (сохранённый).');
+  } else if (rateState === 'loading') rateMessage('Загрузка курса ЦБ РФ… Пока используется непроверенное исходное значение.', 'warning');
+  else rateMessage('Неактуальный курс: используется исходное значение 82,32 ₽. Обновите курс или введите его вручную.', 'warning');
+}
+let lastAutomaticAttempt = 0;
+async function loadExchangeRate(force = false) {
+  if (refreshRate.disabled) return;
+  const editVersion = rateEditVersion;
+  if (!force) lastAutomaticAttempt = Date.now();
+  refreshRate.disabled = true;
+  refreshRate.setAttribute('aria-busy', 'true');
+  rateState = 'loading';
+  if (manualRate) rateMessage(force ? 'Обновление курса ЦБ РФ…' : 'Проверка курса ЦБ РФ… Ручное значение сохранено.', 'manual');
+  else showDefaultRate();
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), 6000);
+  try {
+    const response = await fetch(rateEndpoint, {signal: controller.signal, cache: 'no-cache', credentials: 'omit'});
+    if (!response.ok) throw new Error('HTTP ' + response.status);
+    const data = await response.json();
+    const usdData = data.Valute?.USD;
+    if (!usdData || typeof usdData.Value !== 'number' || typeof usdData.Nominal !== 'number' || usdData.Nominal <= 0) throw new Error('Invalid USD rate');
+    const record = {rate: usdData.Value / usdData.Nominal, date: typeof data.Date === 'string' ? data.Date.slice(0,10) : '', fetchedOn: moscowDay()};
+    if (!validRate(record)) throw new Error('Invalid rate data');
+    if (lastRate && record.date < lastRate.date) throw new Error('Older rate data');
+    storeRate(record);
+    const apply = editVersion === rateEditVersion && (force || !manualRate);
+    setDefaultRate(record, apply);
+    if (apply) manualRate = false;
+    rateState = 'success';
+    showDefaultRate();
+    if (apply) update();
+  } catch (error) {
+    rateState = 'failed';
+    if (manualRate) rateMessage('Ручной курс сохранён. Обновить курс ЦБ РФ не удалось.', 'warning');
+    else showDefaultRate();
+  } finally {
+    clearTimeout(timeout);
+    refreshRate.disabled = false;
+    refreshRate.setAttribute('aria-busy', 'false');
+  }
+}
+refreshRate.addEventListener('click', () => loadExchangeRate(true));
+const cachedRate = readRateCache();
+if (cachedRate) setDefaultRate(cachedRate, true);
+const cachedToday = cachedRate?.fetchedOn === moscowDay();
+if (cachedToday) {
+  rateState = 'success';
+  showDefaultRate();
+}
+
+// Select all on initial focus; subsequent clicks permit normal caret placement.
+inputs.forEach(input => {
+  let firstMousePress = false;
+  input.addEventListener('mousedown', () => { firstMousePress = document.activeElement !== input; });
+  input.addEventListener('focus', () => { input.select(); });
+  input.addEventListener('mouseup', event => {
+    if (firstMousePress) { event.preventDefault(); input.select(); }
+    firstMousePress = false;
+  });
+  input.addEventListener('blur', () => { firstMousePress = false; });
+});
+// Единственный обработчик для всех шести полей, включая курс вне form.
+document.addEventListener('input', event => {
+  if (!inputs.includes(event.target)) return;
+  if (event.target === rateInput) {
+    rateEditVersion++;
+    manualRate = true;
+    rateMessage('Курс введён вручную.', 'manual');
+  }
+  update();
+});
+form.addEventListener('submit', event => { event.preventDefault(); update(); });
+document.getElementById('reset').addEventListener('click', () => {
+  rateEditVersion++;
+  manualRate = false;
+  form.reset();
+  showDefaultRate();
+  update();
+});
+// Одна функция для обеих кнопок; резервный способ для локальных файлов и старых браузеров.
+async function copyToClipboard(text, trigger) {
+  try {
+    if (!navigator.clipboard?.writeText) throw new Error('Clipboard unavailable');
+    await navigator.clipboard.writeText(text);
+    return true;
+  } catch {
+    const field = document.createElement('textarea');
+    field.value = text;
+    field.setAttribute('readonly', '');
+    field.style.cssText = 'position:fixed;left:0;top:0;opacity:0;pointer-events:none;';
+    document.body.appendChild(field);
+    let ok = false;
+    try { field.select(); ok = document.execCommand('copy'); } catch {}
+    finally { field.remove(); trigger.focus({preventScroll:true}); }
+    return ok;
+  }
+}
+copy.addEventListener('click', async () => {
+  const result = update();
+  if (!result) return;
+  const version = copyVersion;
+  const labels = ['Original QuadStick Game Controller','Mounting Arm Adapter Kit','Доставка по США','Доставка в Россию','Пошлина'];
+  const rate = parseDecimal(inputs[0].value);
+  const lines = inputs.slice(1).map((input,i) => {
+    const price = parseDecimal(input.value);
+    return String(i + 1).padStart(2, '0') + '. ' + labels[i] + ': ' + formatter.format(price) + ' $ / ' + formatter.format(price * rate) + ' ₽';
+  });
+  const breakdown = [
+    'Оплата иностранной картой (01–03): ' + formatter.format(result.card) + ' $ / ' + formatter.format(result.card * rate) + ' ₽',
+    'Оплата через Prostobox (04–05): ' + formatter.format(result.prostobox) + ' $ / ' + formatter.format(result.prostobox * rate) + ' ₽',
+    'Рублёвые суммы ориентировочные; внутренний курс Prostobox может отличаться.'
+  ];
+  const text = ['Калькулятор доставки QuadStick через Prostobox', 'Курс доллара: ' + formatter.format(rate) + ' ₽/$', ...lines, 'Итого: ' + usd.textContent + ' / ' + rub.textContent, '', ...breakdown].join('\n');
+  if (await copyToClipboard(text, copy)) showCopied(version);
+  else if (version === copyVersion) status.textContent = 'Браузер запретил копирование. Выделите итог вручную.';
+});
+const referralButton = document.getElementById('referral-copy');
+const referralFeedback = document.getElementById('referral-feedback');
+let referralTimer;
+let referralPending = false;
+function resetReferralIcon() {
+  referralButton.removeAttribute('data-copied');
+  referralFeedback.textContent = '';
+}
+referralButton.addEventListener('click', async () => {
+  if (referralPending) return;
+  referralPending = true;
+  const code = referralButton.querySelector('span').textContent.trim();
+  clearTimeout(referralTimer);
+  resetReferralIcon();
+  const ok = await copyToClipboard(code, referralButton);
+  referralFeedback.textContent = ok ? 'Код скопирован.' : 'Не удалось скопировать. Выделите код вручную.';
+  if (ok) {
+    referralButton.dataset.copied = 'true';
+    referralTimer = setTimeout(resetReferralIcon, 3000);
+  }
+  referralPending = false;
+});
+printButton.addEventListener('click', () => { if (!printButton.disabled) window.print(); });
+window.addEventListener('beforeprint', update);
+update();
+// Проверяем дату по Москве при открытии и возвращении на вкладку.
+// Повтор после ошибки ограничен минутой; ручной запрос не ограничен.
+function refreshIfNeeded() {
+  if (document.visibilityState === 'hidden' || refreshRate.disabled) return;
+  if (lastRate?.fetchedOn === moscowDay()) return;
+  if (Date.now() - lastAutomaticAttempt < 60000) return;
+  loadExchangeRate(false);
+}
+document.addEventListener('visibilitychange', () => {
+  if (document.visibilityState === 'visible') refreshIfNeeded();
+});
+window.addEventListener('pageshow', refreshIfNeeded);
+refreshIfNeeded();
+// Резервируем только фактическую высоту закреплённой панели и небольшой отступ.
+const mobileTotalPanel = document.querySelector('.mobile-total');
+function syncMobileTotalHeight() {
+  const height = Math.ceil(mobileTotalPanel.getBoundingClientRect().height);
+  if (height > 0) document.documentElement.style.setProperty('--mobile-total-height', `${height}px`);
+}
+if ('ResizeObserver' in window) {
+  const mobileTotalObserver = new ResizeObserver(syncMobileTotalHeight);
+  mobileTotalObserver.observe(mobileTotalPanel);
+} else {
+  window.addEventListener('resize', syncMobileTotalHeight);
+  if ('MutationObserver' in window) new MutationObserver(syncMobileTotalHeight).observe(mobileTotalPanel, { childList: true, subtree: true, characterData: true });
+}
+syncMobileTotalHeight();
+</script>
+</body>
+</html>
